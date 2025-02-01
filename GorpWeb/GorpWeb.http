@@ -1,0 +1,6 @@
+@GorpWeb_HostAddress = http://localhost:5082
+
+GET {{GorpWeb_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
