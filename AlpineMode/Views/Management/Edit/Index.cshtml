@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Edit Tour";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/editTour.css" asp-append-version="true">
+</head>
+
+@model List<TodoList.Entities.Tour>
+
+<h2>Select Tour to Edit</h2>
+<table class="table">
+    <tr>
+        <th>Tour</th>
+        <th>City</th>
+        <th>Hotel</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var tour in Model)
+    {
+        <tr>
+            <td>@tour.Name</td>
+            <td>@tour.City.Name</td>
+            <td>@tour.Hotel.Name</td>
+            <td>
+                <form asp-controller="Edit" asp-action="SelectTour" method="post">
+                    <input type="hidden" name="tourId" value="@tour.ID" />
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+

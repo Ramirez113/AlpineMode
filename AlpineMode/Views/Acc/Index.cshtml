@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/account.css" />
+</head>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="account-container">
+    <div class="account-info">
+        <h2>Profile Information</h2>
+        <div class="info-item"><strong>Nickname:</strong> @ViewBag.User?.Nickname</div>
+        <div class="info-item"><strong>Position:</strong> @ViewBag.User?.Position</div>
+    </div>
+
+    <div class="account-actions">
+        <button class="btn btn-primary">Edit Profile</button>
+        <button class="btn btn-danger">Logout</button>
+    </div>
+</div>

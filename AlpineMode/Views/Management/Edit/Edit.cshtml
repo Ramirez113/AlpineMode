@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Edit Tour";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+
+@model AlpineMode.Models.EditTourViewModel
+
+<h1>Edit Tour</h1>
+
+<form asp-action="Edit" asp-controller="TourEdit" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="ID" />
+
+    <div class="form-group">
+        <label>City</label>
+        <select asp-for="CityID" asp-items="@(new SelectList(ViewData["Cities"] as List<TodoList.Entities.City>, "ID", "Name"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Hotel</label>
+        <select asp-for="HotelID" asp-items="@(new SelectList(ViewData["Hotels"] as List<TodoList.Entities.Hotel>, "ID", "Name"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>FlyCompany</label>
+        <select asp-for="FlyCompanyID"
+                asp-items="@(new SelectList(ViewData["FlyCompanies"] as List<TodoList.Entities.FlyCompany>, "ID", "Name"))"
+                class="form-control">
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label>FoodSystem</label>
+        <select asp-for="FoodSystemID" asp-items="@(new SelectList(ViewData["FoodSystems"] as List<TodoList.Entities.FoodSystem>, "ID", "Name"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Category</label>
+        <select asp-for="CategoryID" asp-items="@(new SelectList(ViewData["Categories"] as List<TodoList.Entities.Category>, "ID", "Name"))" class="form-control"></select>
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input asp-for="Price" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Start Date</label>
+        <input type="date" asp-for="StartTime" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="date" asp-for="EndTime" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</form>

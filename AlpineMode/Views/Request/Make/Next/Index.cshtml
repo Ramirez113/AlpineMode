@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Next";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/next.css" />
+</head>
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" asp-action="Filter">
+    <div class="filter-menu">
+        <select id="countryFilter" name="SelectedCountryId">
+            <option value="">Select Country</option>
+            @if (ViewBag.Countries != null)
+            {
+                foreach (var country in ViewBag.Countries)
+                {
+                    <option value="@country.ID">@country.Name</option>
+                }
+            }
+        </select>
+
+        <select id="cityFilter" name="SelectedCityId">
+            <option value="">Select City</option>
+            @if (ViewBag.Cities != null)
+            {
+                foreach (var city in ViewBag.Cities)
+                {
+                    <option value="@city.ID">@city.Name</option>
+                }
+            }
+        </select>
+
+        <select id="categoryFilter" name="SelectedCategoryId">
+            <option value="">Select Category</option>
+            @if (ViewBag.Categories != null)
+            {
+                foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category.ID">@category.Name</option>
+                }
+            }
+        </select>
+
+        <button type="submit" class="filter-button">Apply Filters</button>
+    </div>
+</form>
+
+<div class="scroll-container">
+    <button class="scroll-btn left" onclick="scrollLeft()">❮</button>
+    <div class="scroll-content">
+        @if (ViewBag.Categories != null)
+        {
+            foreach (var category in ViewBag.Categories)
+            {
+                <div class="tour-type">
+                    <span>@category.Name</span>
+                </div>
+            }
+        }
+    </div>
+    <button class="scroll-btn right" onclick="scrollRight()">❯</button>
+</div>
+
+<script>
+    document.getElementById("countryFilter").addEventListener("change", function () {
+        let countryId = this.value;
+        fetch(`/Next/FilterCities?countryId=${countryId}`)
+            .then(response => response.json())
+            .then(data => {
+                let citySelect = document.getElementById("cityFilter");
+                citySelect.innerHTML = "<option value=''>Select City</option>";
+                data.forEach(city => {
+                    let option = document.createElement("option");
+                    option.value = city.ID;
+                    option.textContent = city.Name;
+                    citySelect.appendChild(option);
+                });
+            });
+    });
+
+    function scrollLeft() {
+        document.querySelector(".scroll-content").scrollBy({ left: -300, behavior: "smooth" });
+    }
+
+    function scrollRight() {
+        document.querySelector(".scroll-content").scrollBy({ left: 300, behavior: "smooth" });
+    }
+</script>

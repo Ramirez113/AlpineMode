@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Look Reporting";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="~/css/reporting.css" />
+</head>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="charts-container">
+    <div class="chart-box">
+        <h3>Total Orders Per Month</h3>
+        <canvas id="ordersChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h3>Most Popular Countries</h3>
+        <canvas id="countriesChart"></canvas>
+    </div>
+
+    <div class="chart-box">
+        <h3>Most Popular Tours</h3>
+        <canvas id="toursChart"></canvas>
+    </div>
+</div>
+
+<script>
+    var ordersData = @Html.Raw(Json.Serialize(ViewBag.OrdersPerMonth));
+    var countriesData = @Html.Raw(Json.Serialize(ViewBag.PopularCountries));
+    var toursData = @Html.Raw(Json.Serialize(ViewBag.PopularTours));
+</script>
+<script src="~/js/reporting.js"></script>

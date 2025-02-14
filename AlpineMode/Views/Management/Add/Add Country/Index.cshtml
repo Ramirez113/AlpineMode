@@ -1,0 +1,43 @@
+﻿@model AlpineMode.Models.AddLocationViewModel
+
+@{
+    ViewData["Title"] = "Add Country & City";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/add-location.css" />
+</head>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="form-container">
+    <h2>Add Country</h2>
+    <form method="post" asp-controller="AddLocation" asp-action="AddCountry">
+        <div class="form-group">
+            <label for="countryName">Country Name:</label>
+            <input type="text" id="countryName" asp-for="NewCountry.Name" required class="input-field" />
+        </div>
+        <button type="submit" class="submit-button">Add Country</button>
+    </form>
+
+    <h2>Add City</h2>
+    <form method="post" asp-controller="AddLocation" asp-action="AddCity">
+        <div class="form-group">
+            <label for="countryId">Select Country:</label>
+            <select id="countryId" asp-for="NewCity.CountryID" required class="select-field">
+                @foreach (var country in Model.Countries)
+                {
+                    <option value="@country.ID">@country.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cityName">City Name:</label>
+            <input type="text" id="cityName" asp-for="NewCity.Name" required class="input-field" />
+        </div>
+
+        <button type="submit" class="submit-button">Add City</button>
+    </form>
+</div>

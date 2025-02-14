@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Make";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/makerequest.css" />
+</head>
+@if (TempData["ExistingClientMessage"] != null)
+{
+    <div class="alert alert-warning">
+        @TempData["ExistingClientMessage"]
+    </div>
+}
+<h2>Реєстрація клієнта</h2>
+
+<form asp-action="Register" asp-controller="Client" method="post" class="form-container">
+    @model RegisterClientViewModel
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Surname"></label>
+        <input asp-for="Surname" class="form-control" />
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input asp-for="Age" type="number" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CityID">Місто</label>
+        @if (Model?.Cities != null && Model.Cities.Any())
+        {
+            <select asp-for="CityID" class="form-control">
+                <option value="">Оберіть місто</option>
+                @foreach (var city in Model.Cities)
+                {
+                    <option value="@city.ID">@city.Name</option>
+                }
+            </select>
+        }
+        else
+        {
+            <p class="text-danger">No cities available</p>
+        }
+        <span asp-validation-for="CityID" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зареєструвати</button>
+</form>
+
+

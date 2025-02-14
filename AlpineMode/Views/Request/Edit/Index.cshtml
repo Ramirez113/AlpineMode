@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+<h1>@ViewData["Title"]</h1>
+
+@model IEnumerable<TodoList.Entities.Order>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Client</th>
+            <th>Tour</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.ID</td>
+                <td>@order.Client?.Name ?? "No client"</td> <!-- Якщо Client == null, вивести "No client" -->
+                <td>@order.Tour?.Name ?? "No tour"</td>   <!-- Перевірка на null для туру -->
+                <td>@order.Data.ToString("dd/MM/yyyy")</td>  <!-- Виведення дати -->
+                <td>
+                    <a href="@Url.Action("Edit", "Order", new { id = order.ID })" class="btn btn-primary">Edit</a>
+                    <a href="@Url.Action("Delete", "Order", new { id = order.ID })" class="btn btn-danger">Delete</a>
+                    <a href="@Url.Action("Details", "Order", new { id = order.ID })" class="btn btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

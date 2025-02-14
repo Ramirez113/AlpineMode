@@ -15,6 +15,11 @@ namespace AlpineMode.Controllers
 
         public IActionResult Index()
         {
+            /*if(string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+            */
             return View();
         }
 

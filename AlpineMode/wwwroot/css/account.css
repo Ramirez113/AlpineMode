@@ -1,0 +1,51 @@
+﻿.account-container {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #222;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.account-info {
+    margin-bottom: 20px;
+}
+
+.info-item {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.account-actions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #a71d2a;
+}

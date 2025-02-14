@@ -1,0 +1,60 @@
+﻿@using TodoList.Entities
+@{
+    ViewData["Title"] = "Add Hotel";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+<link rel="stylesheet" href="~/css/hotel.css" />
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="AddHotel" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="Name">Hotel Name</label>
+        <input type="text" class="form-control" id="Name" name="Name" required />
+    </div>
+    <div class="form-group">
+        <label for="Rating">Rating</label>
+        <input type="number" class="form-control" id="Rating" name="Rating" step="0.1" min="0" max="5" required />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea class="form-control" id="Description" name="Description" rows="3" required></textarea>
+    </div>
+    <div class="form-group">
+        <label for="HotelImage">Hotel Image</label>
+        <input type="file" class="form-control" id="HotelImage" name="HotelImage" />
+    </div>
+
+    <h3>Add Rooms</h3>
+    <div id="rooms-container">
+        <div class="form-group">
+            <label for="RoomDescription">Room Description</label>
+            <input type="text" class="form-control" name="RoomDescriptions[0]" placeholder="Room Description" required />
+        </div>
+        <div class="form-group">
+            <label for="RoomPeople">Count of People</label>
+            <input type="number" class="form-control" name="RoomPeople[0]" min="1" required />
+        </div>
+        <div class="form-group">
+            <label for="RoomCount">Count of Rooms</label>
+            <input type="number" class="form-control" name="RoomCount[0]" min="1" required />
+        </div>
+
+        <div class="form-group">
+            <label for="RoomTypeIDs">Room Types</label>
+            <select class="form-control" id="RoomTypeIDs" name="RoomTypeIDs" multiple>
+                @foreach (var type in ViewData["RoomTypes"] as List<TypeOfRoom>)
+                {
+                    <option value="@type.ID">@type.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="RoomImages">Room Images</label>
+            <input type="file" class="form-control" name="RoomImages" multiple />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Hotel</button>
+</form>

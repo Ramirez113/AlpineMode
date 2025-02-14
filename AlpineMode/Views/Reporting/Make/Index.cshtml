@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Make Reporting";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+<head>
+    <link href="~/css/report.css" rel="stylesheet" />
+</head>
+   
+
+<h1>@ViewData["Title"]</h1>
+
+
+<div class="report-buttons-container">
+    <button class="btn btn-report" onclick="generateReport('pdf')">
+        <i class="fa fa-file-pdf"></i> Export to PDF
+    </button>
+    <button class="btn btn-report" onclick="generateReport('xlsx')">
+        <i class="fa fa-file-excel"></i> Export to Excel
+    </button>
+    <button class="btn btn-report" onclick="generateReport('csv')">
+        <i class="fa fa-file-csv"></i> Export to CSV
+    </button>
+</div>
+
+<script>
+    function generateReport(format) {
+        window.location.href = '/ReportingMake/GenerateReport?format=' + format;
+    }
+</script>

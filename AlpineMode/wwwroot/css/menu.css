@@ -1,0 +1,114 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Russo One", serif;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+}
+.container {
+    display: flex;
+    width: 100%;
+}
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 255px;
+    padding: 40px 3%;
+    background: rgb(22, 20, 20);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.sidebar nav{
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0;
+}
+.sidebar h1{
+    font-size: 23px;
+    color: white;
+}
+.sidebar nav a{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 8px 16px;
+    border-radius: 99px;
+    color: snow;
+    position:relative;
+}
+.sidebar nav a i{
+    display: flex;
+    position: absolute;
+    padding: 0 0 0 150px;
+}
+.sidebar .acc i{
+    font-size: 24px;
+    color: snow;
+    padding: 5px;
+}
+.sidebar .acc{
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.sidebar .acc a{
+    text-decoration: none;
+    color: snow;
+    position: relative;
+}
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+.dropdown {
+    position: relative;
+    display: block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 16px;
+    color: snow;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    position: relative;
+    background: rgb(23, 20, 20);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    max-height: 200px;
+    padding: 10px 0;
+}
+

@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Add Tour";
+    Layout = "~/Views/Shared/SideBar.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/add.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<div class="form-container">
+    <form asp-action="Create" method="post">
+        <h1>@ViewData["Title"]</h1>
+
+        <div class="form-group">
+            <label for="TourName">Tour Name</label>
+            <input type="text" class="form-control" id="TourName" name="Tour.Name" required />
+        </div>
+
+        <div class="form-group">
+            <label for="StartDate">Start Date</label>
+            <input type="date" class="form-control" id="StartTime" name="Tour.StartTime" required />
+        </div>
+
+        <div class="form-group">
+            <label for="EndDate">End Date</label>
+            <input type="date" class="form-control" id="EndTime" name="Tour.EndTime" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Price">Price</label>
+            <input type="number" class="form-control" id="Price" name="Tour.Price" step="0.01" required />
+        </div>
+
+        <div class="form-group">
+            <label for="Country">Country</label>
+            <div class="d-flex">
+                <select class="form-control" id="Country" name="Tour.CountryID" required>
+                    <option value="">Select Country</option>
+                    @foreach (var country in Model.Countries)
+                    {
+                        <option value="@country.ID">@country.Name</option>
+                    }
+                </select>
+                <a href="@Url.Action("Add Country", "Index")" class="btn btn-secondary ml-2">+</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="City">City</label>
+            <div class="d-flex">
+                <select class="form-control" id="City" name="Tour.CityID" required>
+                    <option value="">Select City</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Hotel">Hotel</label>
+            <div class="d-flex">
+                <select class="form-control" id="Hotel" name="Tour.HotelID" required>
+                    <option value="">Select Hotel</option>
+                    @foreach (var hotel in Model.Hotels)
+                    {
+                        <option value="@hotel.ID">@hotel.Name</option>
+                    }
+                </select>
+                <a href="@Url.Action("Add Country", "Index")" class="btn btn-secondary ml-2">+</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Company">Company</label>
+            <div class="d-flex">
+                <select class="form-control" id="Company" name="Tour.FlyCompanyID" required>
+                    <option value="">Select Company</option>
+                    @foreach (var company in Model.Companies)
+                    {
+                        <option value="@company.ID">@company.Name</option>
+                    }
+                </select>
+                <a href="@Url.Action("Create", "FlyCompany")" class="btn btn-secondary ml-2">+</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="MealPlan">Meal Plan</label>
+            <div class="d-flex">
+                <select class="form-control" id="MealPlan" name="Tour.FoodSystemID" required>
+                    <option value="">Select Meal Plan</option>
+                    @foreach (var mealPlan in Model.MealPlans)
+                    {
+                        <option value="@mealPlan.ID">@mealPlan.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Category">Category</label>
+            <div class="d-flex">
+                <select class="form-control" id="Category" name="Tour.CategoryID" required>
+                    <option value="">Select Category</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.ID">@category.Name</option>
+                    }
+                </select>
+                <a href="@Url.Action("Create", "Category")" class="btn btn-secondary ml-2">+</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <textarea class="form-control" id="Description" name="Tour.Description" required style="resize: none;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Tour</button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#Country').change(function () {
+            var countryId = $(this).val();
+            if (countryId) {
+                $.getJSON('/City/GetCitiesByCountry/' + countryId, function (data) {
+                    var citySelect = $('#City');
+                    citySelect.empty();
+                    citySelect.append('<option value="">Select City</option>');
+                    $.each(data, function (index, item) {
+                        citySelect.append('<option value="' + item.id + '">' + item.name + '</option>');
+                    });
+                });
+            } else {
+                $('#City').empty().append('<option value="">Select City</option>');
+            }
+        });
+    });
+</script>

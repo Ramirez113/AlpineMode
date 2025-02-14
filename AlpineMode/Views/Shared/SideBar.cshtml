@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="~/css/menu.css"/>
+    <script src="~/js/menu.js" defer></script>
+    @RenderSection("Styles", required: false)
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100..900&family=Russo+One&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h1>AlpineMode<i class='bx bx-landscape'></i> </h1>
+
+            <nav>
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" asp-controller="Request" asp-action="Index"><i class='bx bx-chevron-down'></i>Request</a>
+                    <div class="dropdown-menu">
+                        <a asp-controller="MakeRequest" asp-action="Index">Make</a>
+                        <a asp-controller="EditRequest" asp-action="Index">Edit</a>
+                    </div>
+
+                </div>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" asp-controller="Management" asp-action="Index"><i class='bx bx-chevron-down'></i>Management</a>
+                    <div class="dropdown-menu">
+                        <a asp-controller="Add" asp-action="Index">Add</a>
+                        <a asp-controller="Edit" asp-action="Index">Edit</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" asp-controller="Reporting" asp-action="Index"><i class='bx bx-chevron-down'></i>Reporting</a>
+                    <div class="dropdown-menu">
+                        <a asp-controller="MakeReport" asp-action="Index">Make</a>
+                        <a asp-controller="LookReport" asp-action="Index">Look</a>
+                    </div>
+                </div>
+                <a asp-controller="History" asp-action="Index">History</a>
+            </nav>
+
+            <div class="acc">
+                <a asp-controller="Acc" asp-action="Index">Account</a>
+                <i class='bx bx-ghost'></i>
+            </div>
+        </aside>
+
+        <main class="content">
+            @RenderBody()
+        </main>
+    </div>
+
+</body>
+</html>
